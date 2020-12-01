@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button yesBtn;
     private Button noBtn;
-    private Button showAnswer;
+    private Button showHelp;
     private Button showResult;
     private Button replayQuiz;
 
@@ -43,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
 // объявление переменных для элементов Экрана
         yesBtn = findViewById(R.id.yesBtn);
         noBtn = findViewById(R.id.noBtn);
-        showAnswer = findViewById(R.id.showAnswer);
+        showHelp = findViewById(R.id.showAnswer);
         showResult = findViewById(R.id.showResult);
         replayQuiz = findViewById(R.id.replayQuiz);
 
-
         startQuiz();
-
 
 // обработка кнопки ДА
         yesBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 // обработка кнопки ПОДСКАЗКА
-        showAnswer.setOnClickListener(new View.OnClickListener() {
+        showHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AnswerActivity.class);
@@ -106,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 // обработка кнопки ПОКАЗАТЬ РЕЗУЛЬТАТ
          showResult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,10 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
              }
          });
-
     }
-
-
 // сохранеие состояния при перевороте ( смене активности )
     @Override
     public void  onSaveInstanceState(Bundle savedInstanceState){
@@ -148,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
         replayQuiz.setVisibility(View.INVISIBLE);
         showResult.setClickable(false);
         showResult.setVisibility(View.INVISIBLE);
+        showHelp.setClickable(true);
+        showHelp.setVisibility(View.VISIBLE);
+
         }
 
 // остановка опроса
@@ -158,19 +155,21 @@ public class MainActivity extends AppCompatActivity {
         replayQuiz.setVisibility(View.VISIBLE);
         showResult.setClickable(true);
         showResult.setVisibility(View.VISIBLE);
+        showHelp.setClickable(false);
+        showHelp.setVisibility(View.INVISIBLE);
     }
 
 // конструктор ответа
     public String constResult (int questionIndex, boolean correct){
-        if (correct) {
-            return (Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                    "// " + getString(questions[questionIndex].getAnswerID()) + "\n" +
-                    getString(R.string.you_answer) + getString(R.string.correct) + "\n\n");
-        }else{
-            return (Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                    "// " + getString(questions[questionIndex].getAnswerID()) + "\n" +
-                    getString(R.string.you_answer) + getString(R.string.inCorrect) + "\n\n");
-        }
+
+        String request = Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                "// " + getString(questions[questionIndex].getAnswerID()) + "\n" +
+                getString(R.string.you_answer) + " ";
+
+          if(correct)  request += getString(R.string.correct)  + "\n\n";
+                  else request += getString(R.string.inCorrect)  + "\n\n";
+
+        return request;
 
     }
 
