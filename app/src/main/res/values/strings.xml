@@ -1,14 +1,24 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="question1">2+2=4</string>
-    <string name="question2">8+2=9</string>
-    <string name="question3">1+2=8</string>
-    <string name="question4">2+7=9</string>
-    <string name="question5">2+5=7</string>
+    <string name="app_name"> Quiz </string>
+    <string name="question1"> Язык хамелеона длинее его тела </string>
+    <string name="question2"> Колибри способа летать назад.  </string>
+    <string name="question3"> У рыб отсутствует долгосрочная память </string>
+    <string name="question4"> Акулы существовали на Земле еще до деревьев</string>
+    <string name="question5"> Эверест — самая высокая гора в мире </string>
+
+    <string name="answer1"> язык хамелиона длинее его тела в 1,5 - 2 раза </string>
+    <string name="answer2"> Это маленькая птичка очень быстро машет крыльями, более 100 раз в секунду. Поэтому, может летать назад и парить на одном месте. У нее очень мощные крылья, а ее полет похож на полет шмеля или осы. </string>
+    <string name="answer3"> В действительности это не более чем забавный миф, в ряде исследований было доказано наличие у рыб долговременной памяти, они способны вспомнить то, что происходило несколько месяцев назад.</string>
+    <string name="answer4"> Возраст самых ранних обнаруженных окаменелостей акулы — 420 миллионов лет. Первые деревья появились на Земле в девонский период, который начался 419 миллионов лет назад и закончился 358 миллионов лет назад</string>
+    <string name="answer5"> Если брать все возвышенности на Земле, включая их скрытую под водой часть, то самая высокая гора в мире — это гавайская Мануа-Кеа, высота которой 10 200 метров (на 1 352 выше, чем Эверест, чья высота составляет 8 848 м)</string>
+
+    <string name="you_answer">вы ответили </string>
+    <string name="endQuiz"> тест завершён </string>
+
 
 
     <string name="correct">правильно</string>
-    <string name="inCorrect"> не правильно</string>
+    <string name="inCorrect">не правильно</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="correct_answer"> Правильный ответ :</string>

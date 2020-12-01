@@ -19,15 +19,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
 
     private Question[] questions = new Question[]{
-            new Question(R.string.question1, true),
-            new Question(R.string.question2, false),
-            new Question(R.string.question3, false),
-            new Question(R.string.question4, true),
-            new Question(R.string.question5, true),
+            new Question(R.string.question1, true ,R.string.answer1),
+            new Question(R.string.question2, true, R.string.answer2),
+            new Question(R.string.question3, true, R.string.answer3),
+            new Question(R.string.question4, true, R.string.answer4),
+            new Question(R.string.question5, true, R.string.answer5),
     };
 
     private int questionIndex = 0; // номер вопроса
     private String result = "";
+
+
 
 
 
@@ -39,55 +41,76 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (savedInstanceState!=null) questionIndex = savedInstanceState.getInt("questionIndex");   // запрашиваем значение по ключу
+          textView = findViewById(R.id.textView);
 
-
-
-        textView = findViewById(R.id.textView);
-
-
+// объявление переменных для элементов Экрана
         yesBtn = findViewById(R.id.yesBtn);
         noBtn = findViewById(R.id.noBtn);
         showAnswer = findViewById(R.id.showAnswer);
         showResult = findViewById(R.id.showResult);
 
-
+// отправка текста в текстовое поля вопроса
         textView.setText(questions[questionIndex].getQuestionResID());
 
 
+// обработка кнопки ДА
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (questions[questionIndex].isAnswerTrue()) {
-                    Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
-                    result += ("вопрос " + Integer.toString(questionIndex+1) + ": " + " + "+ "\n");
-                }else {
-                    Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
-                    result += ("вопрос " + Integer.toString(questionIndex+1) + ": " + " + "+ "\n");
+                   Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
+
+                   result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                              "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
+                           getString(R.string.you_answer) + getString(R.string.correct) +"\n\n");
+            } else {
+                  Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
+
+                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
+                            getString(R.string.you_answer) + getString(R.string.inCorrect) +"\n\n");
+
                 }
 
-                if (questionIndex < (questions.length - 1)) questionIndex++;
-                else questionIndex = 0;
-                textView.setText(questions[questionIndex].getQuestionResID());
+                if (questionIndex < (questions.length - 1)){
+                    questionIndex++;
+                    textView.setText(questions[questionIndex].getQuestionResID());
+                }
+                else textView.setText(R.string.endQuiz);
+
             }
         });
-
+// обработка кнопки НЕТ
         noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!questions[questionIndex].isAnswerTrue()) {
                     Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
-                    result += ("вопрос " + Integer.toString(questionIndex+1) + ": " + " + " + "\n");
+
+                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
+                            getString(R.string.you_answer) + R.string.correct +"\n\n");
+
                 }else{
                     Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
-                    result += ("вопрос " + Integer.toString(questionIndex+1) + ": " + " - "+ "\n");}
 
-                if (questionIndex < (questions.length - 1)) questionIndex++;
-                else questionIndex = 0;
-                textView.setText(questions[questionIndex].getQuestionResID());
+                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
+                            getString(R.string.you_answer) + getString(R.string.inCorrect) +"\n\n");
+                }
+
+                if (questionIndex < (questions.length - 1)) {
+                    questionIndex++;
+                    textView.setText(questions[questionIndex].getQuestionResID());
+                }
+
+                else  textView.setText(R.string.endQuiz);
+
             }
         });
 
-
+// обработка кнопки РЕЗУЛЬТЕТ
         showAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
