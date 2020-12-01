@@ -18,7 +18,7 @@
 
 
     <string name="correct">правильно</string>
-    <string name="inCorrect">не правильно</string>
+    <string name="inCorrect">не правильно </string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="help"> Подсказка :</string>
