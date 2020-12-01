@@ -146,10 +146,16 @@ public class MainActivity extends AppCompatActivity {
         replayQuiz.setVisibility(View.INVISIBLE);
         showResult.setClickable(false);
         showResult.setVisibility(View.INVISIBLE);
+
         showHelp.setClickable(true);
         showHelp.setVisibility(View.VISIBLE);
+        yesBtn.setClickable(true);
+        yesBtn.setVisibility(View.VISIBLE);
+        noBtn.setClickable(true);
+        noBtn.setVisibility(View.VISIBLE);
 
-        }
+
+    }
 
 // остановка опроса
     public void stopQuiz(){
@@ -161,8 +167,14 @@ public class MainActivity extends AppCompatActivity {
         replayQuiz.setVisibility(View.VISIBLE);
         showResult.setClickable(true);
         showResult.setVisibility(View.VISIBLE);
+
         showHelp.setClickable(false);
         showHelp.setVisibility(View.INVISIBLE);
+        yesBtn.setClickable(false);
+        yesBtn.setVisibility(View.INVISIBLE);
+        noBtn.setClickable(false);
+        noBtn.setVisibility(View.INVISIBLE);
+
     }
 
 // конструктор ответа
