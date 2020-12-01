@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
+
     private String inResult;
     private TextView resultList;
 
@@ -13,7 +14,6 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
 
         inResult = getIntent().getStringExtra("result");
         resultList = findViewById(R.id.resultList);

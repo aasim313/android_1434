@@ -7,6 +7,7 @@ import android.widget.TextView;
 public class AnswerActivity extends AppCompatActivity {
 
     private boolean isAnswerTrue;
+    private String inHelp;
     private TextView textAnswer;
 
     @Override
@@ -14,10 +15,13 @@ public class AnswerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
-        isAnswerTrue = getIntent().getBooleanExtra("answer",false);
+        inHelp = getIntent().getStringExtra("help");
         textAnswer = findViewById(R.id.textAnswer);
+        textAnswer.setText(inHelp);
 
-        textAnswer.setText(isAnswerTrue ? R.string.correct : R.string.inCorrect);
+
+
+        // textAnswer.setText(isAnswerTrue ? R.string.correct : R.string.inCorrect);
 
     }
 }

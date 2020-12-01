@@ -21,7 +21,7 @@
     <string name="inCorrect">не правильно</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="correct_answer"> Правильный ответ :</string>
+    <string name="help"> Подсказка :</string>
 
 
     <string name="show_answer"> Посмотреть подсказку </string>

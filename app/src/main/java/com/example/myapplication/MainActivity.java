@@ -97,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// обработка кнопки РЕЗУЛЬТЕТ
+// обработка кнопки ПОДСКАЗКА
         showAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AnswerActivity.class);
-                intent.putExtra("answer",questions[questionIndex].isAnswerTrue());
+                intent.putExtra("help",getString(questions[questionIndex].getAnswerID()));
                 startActivity(intent);
             }
         });
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+//начало опоса
     public void startQuiz(){
         questionIndex = 0; // номер вопроса
         result = "";
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         // replayQuiz.setEnabled(false);
         //showResult.setEnabled(false);
     }
-
+// остановка опроса
     public void stopQuiz(){
         textView.setText(R.string.endQuiz);
         //replayQuiz.setEnabled(true);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+// конструктор ответа
     public String constResult (int questionIndex, boolean correct){
         if (correct) {
             return (Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
