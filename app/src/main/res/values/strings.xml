@@ -11,5 +11,19 @@
     <string name="inCorrect"> не правильно</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="correct_answer"> Правильный ответ :</string>
+
+
+    <string name="show_answer">показать ответ</string>
+    <string name="show_result">результаты</string>
+
+    <!-- result activity  -->
+    <string name="result_title"> Результат: </string>
+    <string name="result_list">  </string>
+
+
+
+
+
 
 </resources>
