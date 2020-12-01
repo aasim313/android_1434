@@ -11,6 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,6 +26,8 @@
         android:layout_height="86dp"
         android:layout_marginStart="24dp"
         android:text="@string/yes"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -35,6 +39,7 @@
         android:layout_height="86dp"
         android:layout_marginEnd="16dp"
         android:text="@string/no"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -42,15 +47,18 @@
 
     <Button
         android:id="@+id/showAnswer"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/correct_answer"
+        android:text="@string/show_answer"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.5
+"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yesBtn"
-        app:layout_constraintVertical_bias="0.219"
+        app:layout_constraintVertical_bias="0.2"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -58,11 +66,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_result"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showAnswer"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintVertical_bias="0.85" />
+
+    <Button
+        android:id="@+id/replayQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/replayQuiz"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/showResult"
+        app:layout_constraintTop_toBottomOf="@+id/showAnswer"
+        app:layout_constraintVertical_bias="0.85" />"
+        tools:layout_editor_absoluteX="294dp"
+        tools:layout_editor_absoluteY="667dp" />
 
 </android.support.constraint.ConstraintLayout>

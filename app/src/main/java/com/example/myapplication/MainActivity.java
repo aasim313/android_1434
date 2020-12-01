@@ -15,23 +15,20 @@ public class MainActivity extends AppCompatActivity {
     private Button noBtn;
     private Button showAnswer;
     private Button showResult;
+    private Button replayQuiz;
 
     private TextView textView;
 
     private Question[] questions = new Question[]{
             new Question(R.string.question1, true ,R.string.answer1),
             new Question(R.string.question2, true, R.string.answer2),
-            new Question(R.string.question3, true, R.string.answer3),
+            new Question(R.string.question3, false, R.string.answer3),
             new Question(R.string.question4, true, R.string.answer4),
-            new Question(R.string.question5, true, R.string.answer5),
+            new Question(R.string.question5, false, R.string.answer5),
     };
 
-    private int questionIndex = 0; // номер вопроса
-    private String result = "";
-
-
-
-
+    private int questionIndex; // номер вопроса
+    private String result="";
 
 
     @Override
@@ -48,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         noBtn = findViewById(R.id.noBtn);
         showAnswer = findViewById(R.id.showAnswer);
         showResult = findViewById(R.id.showResult);
+        replayQuiz = findViewById(R.id.replayQuiz);
 
-// отправка текста в текстовое поля вопроса
-        textView.setText(questions[questionIndex].getQuestionResID());
+
+        startQuiz();
 
 
 // обработка кнопки ДА
@@ -60,25 +58,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if (questions[questionIndex].isAnswerTrue()) {
                    Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
-
-                   result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                              "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
-                           getString(R.string.you_answer) + getString(R.string.correct) +"\n\n");
-            } else {
+                   result += constResult(questionIndex,true);
+                 } else {
                   Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
-
-                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
-                            getString(R.string.you_answer) + getString(R.string.inCorrect) +"\n\n");
-
+                    result += constResult(questionIndex,false);
                 }
 
                 if (questionIndex < (questions.length - 1)){
                     questionIndex++;
                     textView.setText(questions[questionIndex].getQuestionResID());
                 }
-                else textView.setText(R.string.endQuiz);
-
+                else {
+                    stopQuiz();
+                }
             }
         });
 // обработка кнопки НЕТ
@@ -87,17 +79,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!questions[questionIndex].isAnswerTrue()) {
                     Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
-
-                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
-                            getString(R.string.you_answer) + R.string.correct +"\n\n");
-
-                }else{
+                    result += constResult(questionIndex,true);
+               }else{
                     Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
-
-                    result += (Integer.toString(questionIndex +1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
-                            "// " +  getString(questions[questionIndex].getAnswerID()) + "\n"+
-                            getString(R.string.you_answer) + getString(R.string.inCorrect) +"\n\n");
+                    result += constResult(questionIndex,false);
                 }
 
                 if (questionIndex < (questions.length - 1)) {
@@ -105,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(questions[questionIndex].getQuestionResID());
                 }
 
-                else  textView.setText(R.string.endQuiz);
+                else{
+                    stopQuiz();
+                }
 
             }
         });
@@ -120,24 +107,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // удалить потом - для теста
-
+// обработка кнопки ПОКАЗАТЬ РЕЗУЛЬТАТ
          showResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent  = new Intent(MainActivity.this, ResultActivity.class);  // cj
                 intent.putExtra("result", result);
                 startActivity(intent);  // выполненеи намерения ( запуск активности)
-
-
             }
         });
+//  обработка кнопки ПОВТРОИТЬ
+         replayQuiz.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                startQuiz();
+
+
+             }
+         });
 
     }
 
 
-
+// сохранеие состояния при перевороте ( смене активности )
     @Override
     public void  onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
@@ -147,6 +139,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void startQuiz(){
+        questionIndex = 0; // номер вопроса
+        result = "";
+        textView.setText(questions[questionIndex].getQuestionResID()); // отправка текста в текстовое поля вопроса
+
+        // replayQuiz.setEnabled(false);
+        //showResult.setEnabled(false);
+    }
+
+    public void stopQuiz(){
+        textView.setText(R.string.endQuiz);
+        //replayQuiz.setEnabled(true);
+        // showResult.setEnabled(true);
+
+    }
+
+
+    public String constResult (int questionIndex, boolean correct){
+        if (correct) {
+            return (Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                    "// " + getString(questions[questionIndex].getAnswerID()) + "\n" +
+                    getString(R.string.you_answer) + getString(R.string.correct) + "\n\n");
+        }else{
+            return (Integer.toString(questionIndex + 1) + ". " + getString(questions[questionIndex].getQuestionResID()) + ".\n" +
+                    "// " + getString(questions[questionIndex].getAnswerID()) + "\n" +
+                    getString(R.string.you_answer) + getString(R.string.inCorrect) + "\n\n");
+        }
+
+    }
 
 /*
     @Override

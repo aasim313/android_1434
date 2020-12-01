@@ -24,8 +24,9 @@
     <string name="correct_answer"> Правильный ответ :</string>
 
 
-    <string name="show_answer">показать ответ</string>
-    <string name="show_result">результаты</string>
+    <string name="show_answer"> Посмотреть подсказку </string>
+    <string name="show_result"> Смотреть результат</string>
+    <string name="replayQuiz"> Повторить </string>
 
     <!-- result activity  -->
     <string name="result_title"> Результат: </string>
