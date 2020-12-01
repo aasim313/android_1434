@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int questionIndex; // номер вопроса
     private String result="";
+    private int countCorrectAnswer;
 
 
     @Override
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 if (questions[questionIndex].isAnswerTrue()) {
                    Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
                    result += constResult(questionIndex,true);
+                   countCorrectAnswer++;
                  } else {
                   Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
                     result += constResult(questionIndex,false);
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!questions[questionIndex].isAnswerTrue()) {
                     Toast.makeText(MainActivity.this, R.string.correct, Toast.LENGTH_SHORT).show();
                     result += constResult(questionIndex,true);
+                    countCorrectAnswer++;
                }else{
                     Toast.makeText(MainActivity.this, R.string.inCorrect, Toast.LENGTH_SHORT).show();
                     result += constResult(questionIndex,false);
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// обработка кнопки ПОДСКАЗКА
+// обработка кнопки ПОДСКАЗКА (запуск другой активности и передача ей текста)
         showHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     public void startQuiz(){
         questionIndex = 0; // номер вопроса
         result = "";
+        countCorrectAnswer = 0;
         textView.setText(questions[questionIndex].getQuestionResID()); // отправка текста в текстовое поля вопроса
 
         replayQuiz.setClickable(false);
@@ -149,7 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
 // остановка опроса
     public void stopQuiz(){
+
         textView.setText(R.string.endQuiz);
+        textView.append(" " + Integer.toString(countCorrectAnswer));
 
         replayQuiz.setClickable(true);
         replayQuiz.setVisibility(View.VISIBLE);

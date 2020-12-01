@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name"> Quiz </string>
     <string name="question1"> Язык хамелеона длинее его тела </string>
-    <string name="question2"> Колибри способа летать назад </string>
+    <string name="question2"> Колибри способна летать задом наперед </string>
     <string name="question3"> У рыб отсутствует долгосрочная память </string>
     <string name="question4"> Акулы существовали на Земле еще до деревьев</string>
     <string name="question5"> Эверест — самая высокая гора в мире </string>
@@ -13,7 +13,7 @@
     <string name="answer5"> Если брать все возвышенности на Земле, включая их скрытую под водой часть, то самая высокая гора в мире — это гавайская Мануа-Кеа, высота которой 10 200 метров (на 1 352 выше, чем Эверест, чья высота составляет 8 848 м)</string>
 
     <string name="you_answer">вы ответили </string>
-    <string name="endQuiz">тест завершён </string>
+    <string name="endQuiz">Тест завершён, правильных ответов: </string>
 
 
 
