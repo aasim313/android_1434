@@ -144,15 +144,20 @@ public class MainActivity extends AppCompatActivity {
         result = "";
         textView.setText(questions[questionIndex].getQuestionResID()); // отправка текста в текстовое поля вопроса
 
-        // replayQuiz.setEnabled(false);
-        //showResult.setEnabled(false);
-    }
+        replayQuiz.setClickable(false);
+        replayQuiz.setVisibility(View.INVISIBLE);
+        showResult.setClickable(false);
+        showResult.setVisibility(View.INVISIBLE);
+        }
+
 // остановка опроса
     public void stopQuiz(){
         textView.setText(R.string.endQuiz);
-        //replayQuiz.setEnabled(true);
-        // showResult.setEnabled(true);
 
+        replayQuiz.setClickable(true);
+        replayQuiz.setVisibility(View.VISIBLE);
+        showResult.setClickable(true);
+        showResult.setVisibility(View.VISIBLE);
     }
 
 // конструктор ответа
